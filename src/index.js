@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react';//jsxからjsに変換される.createElementみたいな.その変更する過程にこのReactが必要
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';

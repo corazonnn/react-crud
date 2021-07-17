@@ -1,6 +1,14 @@
+import React from "react";
+
 function App() {
+  const ClickEvent = () => {
+    return alert("Click!!!")
+  }
   return (
-    <h1>HELLO WORLD</h1>
+    <React.Fragment>
+      <h1 className="foo">HELLO WORLD</h1>
+      <button onClick={ClickEvent}>BUTTON</button>
+    </React.Fragment>
   );
 }
 
