@@ -1,3 +1,5 @@
+import React from 'react';
+import PropsTypes from 'prop-types';
 function App() {
   const profiles = [
     {name: "ルフィ",age:19},
@@ -17,6 +19,9 @@ function App() {
 }
 const Onepiece = (props) =>{
   return <div>I am {props.name} and {props.age}!!!</div>
+}
+Onepiece.propsTypes = {
+  name: PropsTypes.string
 }
 
 export default App;
