@@ -1,9 +1,15 @@
 function App() {
   return (
     <div>
-      <p>HELLO WORLD</p>
+      <Cat />
+      <Cat />
+      <Cat />
+      <Cat />
     </div>
   );
+}
+const Cat = () =>{
+  return <div>にゃー</div>
 }
 
 export default App;
