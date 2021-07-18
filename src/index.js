@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';//storeを作成するため
+import {Provider} from 'react-redux';//作成したstoreを全てのcomponentに渡すコンポーネント
+
 import './index.css';
-import App from './App';
+import reducer from './reducers';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
+//storeの作成.全部のstateはこのstoreで管理される
+const store = createStore(reducer)
+
+//Providerを定義することでグローバルにstateを使用することが出来る
+//Providerの中で定義したコンポーネントだけグローバルstateを使用することができる
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
