@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';//storeを作成するため
+import {createStore, applyMiddleware} from 'redux';//storeを作成するため
 import {Provider} from 'react-redux';//作成したstoreを全てのcomponentに渡すコンポーネント
-
+import thunk from 'redux-thunk'
 import './index.css';
 import reducer from './reducers';
-import App from './components/App';
+import EventsIndex from './components/events_index';
 import reportWebVitals from './reportWebVitals';
 
 //storeの作成.全部のstateはこのstoreで管理される
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 
 //Providerを定義することでグローバルにstateを使用することが出来る
 //Providerの中で定義したコンポーネントだけグローバルstateを使用することができる
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <EventsIndex />
   </Provider>,
   document.getElementById('root')
 );
