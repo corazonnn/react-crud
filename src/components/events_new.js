@@ -30,15 +30,15 @@ class EventsNew extends Component {
   //handlesubmit(関数)...handlesubmitはsubmitボタンをクリックした際に入力された値をvaluesとして設定し、
   //そのvalues(入力された値)を第一引数の関数(今はthis.onSubmit)へ送られる
   render() {
-    const {handleSubmit} = this.props
-    console.log("ここにはきてるで");
+    const {handleSubmit, pristine,submitting} = this.props//pristineはフォームに触ってない時はsubmitボタンが押せない
+    console.log(submitting);//submittingボタンが押されたらtrueになる
     return (
     <form　onSubmit={handleSubmit(this.onSubmit)}>
       <div>
         <Field label="Title" name="title" type="text" component={this.renderField} />
         <Field label="Body" name="body" type="text" component={this.renderField} />
         <div>
-          <input type="submit" value="Submit" disabled={false} />
+          <input type="submit" value="Submit" disabled={pristine || submitting} />
           <Link to="/" >キャンセル</Link>
         </div>
       </div>
