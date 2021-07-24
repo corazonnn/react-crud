@@ -7,10 +7,17 @@ import "./index.css";
 import reducer from "./reducers";
 import EventsIndex from "./components/events_index";
 import EventsNew from "./components/events_new";
+import EventsShow from "./components/events_show";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { composeWithDevTools } from "redux-devtools-extension"; //複雑化するアプリの中でデバックを簡単にしてくれるツール
 //storeの作成.全部のstateはこのstoreで管理される
-const store = createStore(reducer, applyMiddleware(thunk));
+
+const enhancer =
+  process.env.NODE_ENV === "development" //開発環境ではデバックができるようになった
+    ? composeWithDevTools(applyMiddleware(thunk))
+    : applyMiddleware(thunk); //なんのため？？
+const store = createStore(reducer, enhancer);
 
 //Providerを定義することでグローバルにstateを使用することが出来る
 //Providerの中で定義したコンポーネントだけグローバルstateを使用することができる
@@ -18,9 +25,10 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/events/new" component={EventsNew} />
-
+        <Route path="/events/new" component={EventsNew} />
+        <Route path="/events/:id" component={EventsShow} />
         <Route exact path="/" component={EventsIndex} />
+        <Route exact path="/evetns" component={EventsIndex} />
       </Switch>
     </BrowserRouter>
   </Provider>,
